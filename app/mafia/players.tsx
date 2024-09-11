@@ -1,27 +1,12 @@
 import { Pressable, ScrollView, Text, View } from "react-native";
 import PlayerCard from "@/components/Players/PlayerCard";
 import { useMafiaStore } from "@/store/context";
-import {
-  AntDesign,
-  FontAwesome6,
-  MaterialCommunityIcons,
-} from "@expo/vector-icons";
 import { useNavigation } from "expo-router";
-import { useEffect, useState } from "react";
 
 export default function Players() {
   const players = useMafiaStore((state) => state.players);
-  const count = useMafiaStore((state) => state.count);
   const navigation = useNavigation<any>();
-  const [total, setTotal] = useState(0);
-
-  useEffect(() => {
-    const sumOfCounts = players.reduce(
-      (acc: number, player: any) => acc + player.count,
-      0
-    );
-    setTotal(sumOfCounts);
-  }, [count, players]);
+  const counter = useMafiaStore((state) => state.counter);
 
   return (
     <View
@@ -60,34 +45,25 @@ export default function Players() {
       <View
         style={{
           width: "100%",
-          // backgroundColor: "#978e8e",
           padding: 16,
-          // paddingBottom: 100,
           borderRadius: 8,
-          flexDirection: "row",
-          justifyContent: "space-between",
-          alignItems: "center",
         }}
       >
-        <MaterialCommunityIcons name="cards" size={24} color="#fff" />
-
         <Text
           style={{
             fontSize: 20,
-            color: total > count ? "#f00" : "#000",
+            color: "#000",
             textAlign: "right",
           }}
         >
-          {total} / {count}
+          {counter} players
         </Text>
       </View>
 
       <Pressable
-        disabled={total !== count}
         style={{
           padding: 16,
-          backgroundColor: total !== count ? "#0000002b" : "#000",
-          // margin: 10,
+          backgroundColor: "#000",
           borderRadius: 8,
           width: "100%",
           marginBottom: 27,

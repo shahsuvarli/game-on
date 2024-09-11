@@ -6,17 +6,16 @@ import { View, Text, TextInput, Image, Pressable } from "react-native";
 export default function PlayerCard() {
   const navigation = useNavigation<any>();
   const [name, setName] = useState("");
-  const count = useMafiaStore((state) => state.count);
   const counter = useMafiaStore((state) => state.counter);
 
   function updateName(text: string) {
     setName(text);
   }
   function submit() {
-    if (count === counter) {
-      navigation.replace("final-page");
-    } else {
+    if (counter) {
       navigation.replace("game-start");
+    } else {
+      navigation.replace("final-page");
     }
   }
 

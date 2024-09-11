@@ -3,13 +3,11 @@ import { Pressable, SafeAreaView, StyleSheet, Text, View } from "react-native";
 
 export default function HomeScreen() {
   const router = useNavigation<any>();
+
   return (
     <SafeAreaView>
       <View style={styles.titleContainer}>
-        <Pressable
-          style={styles.card}
-          onPress={() => router.navigate("mafia")}
-        >
+        <Pressable style={styles.card} onPress={() => router.navigate("mafia")}>
           <Text style={styles.cardText}>Mafia</Text>
         </Pressable>
       </View>
@@ -27,12 +25,13 @@ const styles = StyleSheet.create({
     gap: 16,
   },
   card: {
-    backgroundColor: "skyblue",
+    backgroundColor: "#000",
     padding: 16,
     borderRadius: 8,
   },
   cardText: {
     fontSize: 24,
     opacity: 0.8,
+    color: "#fff",
   },
 });

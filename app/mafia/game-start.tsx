@@ -2,14 +2,14 @@ import { useMafiaStore } from "@/store/context";
 import { MaterialIcons } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
 import { useNavigation } from "expo-router";
+import { StatusBar } from "expo-status-bar";
 import { Pressable, SafeAreaView, StyleSheet, Text, View } from "react-native";
-// const 
+// const
 
 export default function GameStart() {
   const navigation = useNavigation<any>();
-  const updateCounter = useMafiaStore((state) => state.updateCounter);
-  const count = useMafiaStore((state) => state.count);
   const counter = useMafiaStore((state) => state.counter);
+  const updateCounter = useMafiaStore((state) => state.updateCounter);
 
   function press() {
     updateCounter();
@@ -17,13 +17,13 @@ export default function GameStart() {
   }
 
   return (
-    <LinearGradient style={styles.titleContainer} colors={["#fff", "#ff8c11"]}>
+    <LinearGradient style={styles.titleContainer} colors={["#fff", "#ff1111"]}>
+      <StatusBar style="dark" />
       <View
         style={styles.card}
         // onPress={() => navigation.navigate("game-start")}
       >
         <Pressable
-          disabled={count === counter}
           style={{
             borderWidth: 1,
             borderStyle: "dashed",
@@ -39,24 +39,9 @@ export default function GameStart() {
         >
           <Text style={styles.cardText}>Touch to open</Text>
           <MaterialIcons name="touch-app" size={30} color="#ffa200" />
-          <Text style={{ color: "#0000005d" }}>
-            {count - counter} cards left
-          </Text>
+          <Text style={{ color: "#0000005d" }}>{counter} cards left</Text>
         </Pressable>
       </View>
-      {/* <Pressable
-        // disabled={!name}
-        style={{
-          padding: 16,
-          backgroundColor: "#000",
-          borderRadius: 8,
-        }}
-        // onPress={submit}
-      >
-        <Text style={{ color: "white", fontSize: 20, textAlign: "center" }}>
-          Submit
-        </Text>
-      </Pressable> */}
     </LinearGradient>
   );
 }
@@ -64,12 +49,7 @@ export default function GameStart() {
 const styles = StyleSheet.create({
   titleContainer: {
     flexDirection: "column",
-    // alignItems: "center",
-    // gap: 8,
     height: "100%",
-    // padding: 16,
-    // paddingBottom: 50,
-    // flex:1,
     gap: 16,
     backgroundColor: "#fff",
   },
@@ -78,10 +58,7 @@ const styles = StyleSheet.create({
     opacity: 0.8,
   },
   card: {
-    // backgroundColor: "skyblue",
-    // padding: 16,
     borderRadius: 8,
-    // height: "100%",
     justifyContent: "center",
     alignItems: "center",
     flex: 1,

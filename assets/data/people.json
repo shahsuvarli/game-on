@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1,
+    "role": "Mafia",
+    "name": "Don Mafia",
+    "selected": false,
+    "image": "../../assets/images/don-mafia.jpg"
+  },
+  {
+    "id": 2,
+    "role": "Citizen",
+    "name": "Citizen",
+    "selected": false,
+    "image": "../../assets/images/citizen.jpg"
+  },
+  {
+    "id": 3,
+    "role": "Citizen",
+    "name": "Citizen",
+    "selected": false,
+    "image": "../../assets/images/citizen.jpg"
+  }
+]

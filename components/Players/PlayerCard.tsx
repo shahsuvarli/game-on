@@ -10,7 +10,6 @@ export default function PlayerCard({ player }: any) {
     <View
       style={{
         backgroundColor: "#bababa",
-        // padding: 16,
         borderRadius: 8,
         gap: 16,
         flexDirection: "row",
@@ -24,13 +23,25 @@ export default function PlayerCard({ player }: any) {
       key={player.id}
     >
       <Pressable
-        onPress={() => (player.count ? decrPlayer(player.id) : null)}
+        onPress={() =>
+          player.count &&
+          player.minRequired !== player.maxRequired &&
+          player.count > player.minRequired
+            ? decrPlayer(player.id)
+            : null
+        }
         style={{ padding: 16 }}
       >
         <AntDesign
-          name={player.count ? "minus" : "delete"}
+          name="minus"
           size={24}
-          color={player.count ? "#000" : "transparent"}
+          color={
+            player.count &&
+            player.minRequired !== player.maxRequired &&
+            player.count > player.minRequired
+              ? "#000"
+              : "transparent"
+          }
         />
       </Pressable>
       <View
@@ -51,10 +62,26 @@ export default function PlayerCard({ player }: any) {
         }}
       >
         <Pressable
-          onPress={() => incrPlayer(player.id)}
+          onPress={() =>
+            // player.count &&
+            player.minRequired !== player.maxRequired &&
+            player.count < player.maxRequired
+              ? incrPlayer(player.id)
+              : null
+          }
           style={{ padding: 16 }}
         >
-          <AntDesign name="plus" size={24} color="#000" />
+          <AntDesign
+            name="plus"
+            size={24}
+            color={
+              // player.count &&
+              player.minRequired !== player.maxRequired &&
+              player.count < player.maxRequired
+                ? "#000"
+                : "transparent"
+            }
+          />
         </Pressable>
       </View>
     </View>

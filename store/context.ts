@@ -1,29 +1,22 @@
 import { create } from "zustand";
 import players from "../assets/data/players.json";
+import { MIN_PLAYERS } from "@/constants/values";
 
 export const useMafiaStore = create((set: any) => ({
-  count: 3,
-  counter: 0,
+  counter: MIN_PLAYERS,
+  players,
   people: [],
   updateCounter: () =>
     set((state: any) => ({
-      counter: state.counter + 1,
+      counter: state.counter - 1,
     })),
   resetCounter: () => set({ counter: 0 }),
-  updateCount: (value: string) =>
-    set((state: any) => ({
-      count: parseInt(value) > 2 ? parseInt(value) : 0,
-    })),
-  players,
   incrPlayer: (playerId: any) =>
     set((state: any) => ({
       players: state.players.map((player: any) =>
-        player.id === playerId &&
-        state.players.reduce((acc: any, player: any) => acc + player.count, 0) <
-          state.count
-          ? { ...player, count: player.count + 1 }
-          : player
+        player.id === playerId ? { ...player, count: player.count + 1 } : player
       ),
+      counter: state.counter + 1,
     })),
   decrPlayer: (playerId: any) =>
     set((state: any) => ({
@@ -32,18 +25,8 @@ export const useMafiaStore = create((set: any) => ({
           ? { ...p, count: p.count - 1 }
           : p
       ),
+      counter: state.counter - 1,
     })),
-  updatePlayers: (playerId: number) =>
-    set((state: any) => ({
-      players: state.players.map((player: any) =>
-        player.id === playerId ? { ...player, selected: true } : player
-      ),
-    })),
-  resetPlayers: () => set({ players }),
-  removePlayer: (playerId: number) =>
-    set((state: any) => ({
-      players: state.players.map((player: any) =>
-        player.id === playerId ? { ...player, selected: false } : player
-      ),
-    })),
+
+  resetGame: () => set({ counter: MIN_PLAYERS, players }),
 }));

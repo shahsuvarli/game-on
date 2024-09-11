@@ -1,5 +1,5 @@
 import { View, Text, ScrollView } from "react-native";
-import data from "../../assets/data/cards.json";
+import people from "../../assets/data/people.json";
 
 export default function FinalPage() {
   return (
@@ -12,13 +12,13 @@ export default function FinalPage() {
         gap: 16,
       }}
     >
-      <Text style={{ fontSize: 20, color:'#0000007c' }}>List of players!</Text>
+      <Text style={{ fontSize: 20, color: "#0000007c" }}>List of players!</Text>
       <ScrollView>
         <View style={{ flexWrap: "wrap", flexDirection: "row", gap: 4 }}>
-          {data.map((item): any => {
+          {people.map((person): any => {
             return (
               <View
-                key={item.id}
+                key={person.id}
                 style={{
                   padding: 16,
                   borderRadius: 8,
@@ -26,7 +26,9 @@ export default function FinalPage() {
                   width: "100%",
                 }}
               >
-                <Text style={{ color: "#fff", fontSize: 17 }}>{item.name}</Text>
+                <Text style={{ color: "#fff", fontSize: 17 }}>
+                  {person.name}
+                </Text>
               </View>
             );
           })}
