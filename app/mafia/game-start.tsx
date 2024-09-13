@@ -4,25 +4,21 @@ import { LinearGradient } from "expo-linear-gradient";
 import { useNavigation } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import { Pressable, SafeAreaView, StyleSheet, Text, View } from "react-native";
-// const
 
 export default function GameStart() {
   const navigation = useNavigation<any>();
   const counter = useMafiaStore((state) => state.counter);
-  const updateCounter = useMafiaStore((state) => state.updateCounter);
+  const randomCard = useMafiaStore((state) => state.randomCard);
 
   function press() {
-    updateCounter();
+    randomCard();
     navigation.replace("player-card");
   }
 
   return (
-    <LinearGradient style={styles.titleContainer} colors={["#fff", "#ff1111"]}>
+    <SafeAreaView style={styles.titleContainer}>
       <StatusBar style="dark" />
-      <View
-        style={styles.card}
-        // onPress={() => navigation.navigate("game-start")}
-      >
+      <View style={styles.card}>
         <Pressable
           style={{
             borderWidth: 1,
@@ -38,11 +34,11 @@ export default function GameStart() {
           onPress={press}
         >
           <Text style={styles.cardText}>Touch to open</Text>
-          <MaterialIcons name="touch-app" size={30} color="#ffa200" />
+          <MaterialIcons name="touch-app" size={30} color="#000" />
           <Text style={{ color: "#0000005d" }}>{counter} cards left</Text>
         </Pressable>
       </View>
-    </LinearGradient>
+    </SafeAreaView>
   );
 }
 
@@ -51,7 +47,8 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     height: "100%",
     gap: 16,
-    backgroundColor: "#fff",
+    flex: 1,
+    backgroundColor: "#3b8d359e",
   },
   title: {
     fontSize: 17,

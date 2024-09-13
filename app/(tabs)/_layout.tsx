@@ -12,7 +12,6 @@ export default function TabLayout() {
       <Tabs.Screen
         name="index"
         options={{
-          // headerShown: true,
           title: "Games",
           tabBarIcon: () => {
             return <Ionicons name="game-controller" size={24} color="black" />;
@@ -20,9 +19,12 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="explore"
+        name="settings"
         options={{
           title: "Explore",
+          tabBarIcon: () => {
+            return <Ionicons name="settings" size={24} color="black" />;
+          },
         }}
       />
     </Tabs>

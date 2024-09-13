@@ -5,7 +5,7 @@ export default function HomeScreen() {
   const router = useNavigation<any>();
 
   return (
-    <SafeAreaView>
+    <SafeAreaView style={{ backgroundColor: "#fff", height:'100%' }}>
       <View style={styles.titleContainer}>
         <Pressable style={styles.card} onPress={() => router.navigate("mafia")}>
           <Text style={styles.cardText}>Mafia</Text>

@@ -4,9 +4,15 @@ import { useMafiaStore } from "@/store/context";
 import { useNavigation } from "expo-router";
 
 export default function Players() {
-  const players = useMafiaStore((state) => state.players);
+  const characters = useMafiaStore((state) => state.characters);
   const navigation = useNavigation<any>();
   const counter = useMafiaStore((state) => state.counter);
+  const generatePeople = useMafiaStore((state) => state.generatePeople);
+
+  function startGame() {
+    generatePeople();
+    navigation.replace("game-start");
+  }
 
   return (
     <View
@@ -37,8 +43,8 @@ export default function Players() {
           gap: 6,
         }}
       >
-        {players.map((player) => (
-          <PlayerCard player={player} key={player.id} />
+        {characters.map((character) => (
+          <PlayerCard player={character} key={character.id} />
         ))}
       </ScrollView>
 
@@ -68,7 +74,7 @@ export default function Players() {
           width: "100%",
           marginBottom: 27,
         }}
-        onPress={() => navigation.replace("game-start")}
+        onPress={startGame}
       >
         <Text style={{ color: "white", fontSize: 20, textAlign: "center" }}>
           Start

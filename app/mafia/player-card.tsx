@@ -1,17 +1,28 @@
 import { useMafiaStore } from "@/store/context";
 import { useNavigation } from "expo-router";
+import { StatusBar } from "expo-status-bar";
 import { useState } from "react";
-import { View, Text, TextInput, Image, Pressable } from "react-native";
+import {
+  View,
+  Text,
+  TextInput,
+  Image,
+  Pressable,
+  KeyboardAvoidingView,
+} from "react-native";
 
 export default function PlayerCard() {
   const navigation = useNavigation<any>();
   const [name, setName] = useState("");
   const counter = useMafiaStore((state) => state.counter);
+  const selectedCard: any = useMafiaStore((state) => state.selectedCard);
+  const assignName = useMafiaStore((state) => state.assignName);
 
   function updateName(text: string) {
     setName(text);
   }
   function submit() {
+    assignName(selectedCard.id, name);
     if (counter) {
       navigation.replace("game-start");
     } else {
@@ -20,7 +31,9 @@ export default function PlayerCard() {
   }
 
   return (
-    <View
+    <KeyboardAvoidingView
+      enabled
+      behavior="padding"
       style={{
         padding: 16,
         backgroundColor: "#fff",
@@ -29,6 +42,7 @@ export default function PlayerCard() {
         justifyContent: "space-evenly",
       }}
     >
+      <StatusBar style="dark" />
       <View
         style={{
           width: "100%",
@@ -38,7 +52,7 @@ export default function PlayerCard() {
         }}
       >
         <Image
-          source={require("../../assets/images/don-mafia.jpg")}
+          source={selectedCard.image}
           style={{
             width: 300,
             height: 400,
@@ -52,7 +66,7 @@ export default function PlayerCard() {
             textAlign: "center",
           }}
         >
-          Don Mafia
+          {selectedCard.role}
         </Text>
       </View>
 
@@ -66,7 +80,7 @@ export default function PlayerCard() {
             borderColor: "#00000046",
             borderRadius: 8,
             height: 50,
-            fontSize: 20,
+            fontSize: 19,
           }}
           placeholderTextColor={"#00000050"}
           value={name}
@@ -86,6 +100,6 @@ export default function PlayerCard() {
           Submit
         </Text>
       </Pressable>
-    </View>
+    </KeyboardAvoidingView>
   );
 }

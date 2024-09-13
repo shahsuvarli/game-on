@@ -1,12 +1,7 @@
 import { useMafiaStore } from "@/store/context";
-import {
-  AntDesign,
-  Feather,
-  Ionicons,
-  MaterialIcons,
-} from "@expo/vector-icons";
-import { Stack, useNavigation, router } from "expo-router";
-import { Pressable, Text } from "react-native";
+import { Ionicons } from "@expo/vector-icons";
+import { Stack, useNavigation } from "expo-router";
+import { Pressable, SafeAreaView, Text, View } from "react-native";
 
 export default function MafiaLayout() {
   const navigation = useNavigation<any>();
@@ -21,17 +16,21 @@ export default function MafiaLayout() {
       <Stack.Screen
         name="players"
         options={{
-          title: "Players",
           headerShown: true,
-          headerTitle: "Players",
-          headerBackTitle: "Number",
-        }}
-      />
-      <Stack.Screen
-        name="player-info"
-        options={{
-          title: "Player info",
-          presentation: "modal",
+          headerTitle: "Choose characters",
+          headerLeft: () => {
+            return (
+              <Pressable
+                onPress={() => {
+                  resetGame();
+                  navigation.navigate("(tabs)");
+                }}
+                style={{ flexDirection: "row", alignItems: "center" }}
+              >
+                <Ionicons name="home" size={25} color="#0000009d" />
+              </Pressable>
+            );
+          },
         }}
       />
       <Stack.Screen
@@ -39,6 +38,9 @@ export default function MafiaLayout() {
         options={{
           title: "",
           headerShown: true,
+          headerBackground: () => {
+            return <View style={{ flex: 1, backgroundColor: "#3b8d359e" }} />;
+          },
           headerLeft: () => {
             return (
               <Pressable
@@ -46,7 +48,16 @@ export default function MafiaLayout() {
                   resetGame();
                   navigation.navigate("players");
                 }}
-                style={{ flexDirection: "row", alignItems: "center" }}
+                style={{
+                  flexDirection: "row",
+                  alignItems: "center",
+                  backgroundColor: "#fff",
+                  borderStyle: "solid",
+                  borderColor: "#fff",
+                  borderWidth: 1,
+                  borderRadius: 100,
+                  padding: 8,
+                }}
               >
                 <Ionicons name="home" size={25} color="#0000009d" />
               </Pressable>
