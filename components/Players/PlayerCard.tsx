@@ -63,7 +63,6 @@ export default function PlayerCard({ player }: any) {
       >
         <Pressable
           onPress={() =>
-            // player.count &&
             player.minRequired !== player.maxRequired &&
             player.count < player.maxRequired
               ? incrPlayer(player.id)
@@ -75,7 +74,6 @@ export default function PlayerCard({ player }: any) {
             name="plus"
             size={24}
             color={
-              // player.count &&
               player.minRequired !== player.maxRequired &&
               player.count < player.maxRequired
                 ? "#000"

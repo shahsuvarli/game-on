@@ -5,7 +5,7 @@ export default function HomeScreen() {
   const router = useNavigation<any>();
 
   return (
-    <SafeAreaView style={{ backgroundColor: "#fff", height:'100%' }}>
+    <SafeAreaView style={{ backgroundColor: "#fff", height: "100%" }}>
       <View style={styles.titleContainer}>
         <Pressable style={styles.card} onPress={() => router.navigate("mafia")}>
           <Text style={styles.cardText}>Mafia</Text>
@@ -18,8 +18,6 @@ export default function HomeScreen() {
 const styles = StyleSheet.create({
   titleContainer: {
     flexDirection: "column",
-    // alignItems: "center",
-    // gap: 8,
     height: "100%",
     padding: 16,
     gap: 16,

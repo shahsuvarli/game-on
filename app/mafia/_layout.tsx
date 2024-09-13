@@ -1,7 +1,7 @@
 import { useMafiaStore } from "@/store/context";
 import { Ionicons } from "@expo/vector-icons";
 import { Stack, useNavigation } from "expo-router";
-import { Pressable, SafeAreaView, Text, View } from "react-native";
+import { Pressable, View } from "react-native";
 
 export default function MafiaLayout() {
   const navigation = useNavigation<any>();

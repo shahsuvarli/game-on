@@ -1,6 +1,5 @@
 import { useMafiaStore } from "@/store/context";
 import { MaterialIcons } from "@expo/vector-icons";
-import { LinearGradient } from "expo-linear-gradient";
 import { useNavigation } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import { Pressable, SafeAreaView, StyleSheet, Text, View } from "react-native";

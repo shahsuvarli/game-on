@@ -1,12 +1,6 @@
 import { useMafiaStore } from "@/store/context";
 import { StatusBar } from "expo-status-bar";
-import {
-  View,
-  Text,
-  ScrollView,
-  Pressable,
-  KeyboardAvoidingView,
-} from "react-native";
+import { View, Text, Pressable } from "react-native";
 
 export default function FinalPage() {
   const people: any = useMafiaStore((state) => state.people);
