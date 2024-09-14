@@ -10,7 +10,7 @@ export default function FinalPage() {
       style={{
         padding: 16,
         flex: 1,
-        backgroundColor: "#fff",
+        backgroundColor: "#ffffff",
         flexDirection: "column",
         gap: 16,
       }}
