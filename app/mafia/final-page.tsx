@@ -1,10 +1,21 @@
 import { useMafiaStore } from "@/store/context";
+import { useNavigation } from "expo-router";
 import { StatusBar } from "expo-status-bar";
-import { View, Text, Pressable } from "react-native";
+import { useEffect } from "react";
+import { View, Text, Pressable, ScrollView } from "react-native";
 
 export default function FinalPage() {
   const people: any = useMafiaStore((state) => state.people);
   const openCard = useMafiaStore((state) => state.openCard);
+
+  const navigation = useNavigation<any>();
+  useEffect(() => {
+    navigation.getParent()?.setOptions({ gestureEnabled: false });
+    return () => {
+      navigation.getParent()?.setOptions({ gestureEnabled: true });
+    };
+  }, []);
+
   return (
     <View
       style={{
@@ -17,7 +28,7 @@ export default function FinalPage() {
     >
       <StatusBar style="dark" />
       <Text style={{ fontSize: 20, color: "#0000007c" }}>List of players!</Text>
-      <View style={{ flexWrap: "wrap", flexDirection: "row", gap: 4 }}>
+      <ScrollView contentContainerStyle={{ flexWrap: "wrap", flexDirection: "row", gap: 4, width:'100%' }}>
         {people.map((person: any): any => {
           return (
             <Pressable
@@ -45,7 +56,7 @@ export default function FinalPage() {
             </Pressable>
           );
         })}
-      </View>
+      </ScrollView>
     </View>
   );
 }

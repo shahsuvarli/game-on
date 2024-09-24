@@ -1,13 +1,23 @@
+import { Colors } from "@/constants/Colors";
 import { useMafiaStore } from "@/store/context";
 import { MaterialIcons } from "@expo/vector-icons";
 import { useNavigation } from "expo-router";
 import { StatusBar } from "expo-status-bar";
+import { useEffect } from "react";
 import { Pressable, SafeAreaView, StyleSheet, Text, View } from "react-native";
 
 export default function GameStart() {
   const navigation = useNavigation<any>();
   const counter = useMafiaStore((state) => state.counter);
   const randomCard = useMafiaStore((state) => state.randomCard);
+
+  useEffect(() => {
+    // console.log(navigation.getParent());
+    navigation.getParent()?.setOptions({ gestureEnabled: false });
+    return () => {
+      navigation.getParent()?.setOptions({ gestureEnabled: true });
+    };
+  }, []);
 
   function press() {
     randomCard();
@@ -22,6 +32,7 @@ export default function GameStart() {
           style={{
             borderWidth: 1,
             borderStyle: "dashed",
+            borderColor: "#949494",
             borderRadius: 100,
             height: 200,
             width: 200,
@@ -33,7 +44,7 @@ export default function GameStart() {
           onPress={press}
         >
           <Text style={styles.cardText}>Touch to open</Text>
-          <MaterialIcons name="touch-app" size={30} color="#000" />
+          <MaterialIcons name="touch-app" size={30} color="#949494" />
           <Text style={{ color: "#0000005d" }}>{counter} cards left</Text>
         </Pressable>
       </View>
@@ -47,7 +58,7 @@ const styles = StyleSheet.create({
     height: "100%",
     gap: 16,
     flex: 1,
-    backgroundColor: "#3b8d359e",
+    backgroundColor: Colors.mafiaPrimary,
   },
   title: {
     fontSize: 17,
@@ -62,5 +73,7 @@ const styles = StyleSheet.create({
   cardText: {
     fontSize: 20,
     opacity: 0.8,
+    color: "#949494",
+    fontWeight: "bold",
   },
 });

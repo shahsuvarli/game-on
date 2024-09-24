@@ -1,3 +1,4 @@
+import { Colors } from "@/constants/Colors";
 import { Ionicons } from "@expo/vector-icons";
 import { Tabs } from "expo-router";
 
@@ -6,24 +7,51 @@ export default function TabLayout() {
     <Tabs
       screenOptions={{
         headerShown: true,
+        tabBarLabelPosition: "beside-icon",
+        tabBarStyle: {
+          backgroundColor: Colors.lightPrimary,
+        },
+        tabBarLabel: () => {
+          return null;
+        },
       }}
     >
       <Tabs.Screen
         name="index"
         options={{
           title: "Games",
-          tabBarIcon: () => {
-            return <Ionicons name="game-controller" size={24} color="black" />;
+          tabBarIcon: ({ focused }) => {
+            return (
+              <Ionicons
+                name="game-controller"
+                size={24}
+                color={focused ? "#fff" : "#bebebe"}
+                t
+              />
+            );
           },
+          headerShown: true,
+          tabBarActiveTintColor: "#fff",
+          headerStyle: {
+            backgroundColor: Colors.lightPrimary,
+          },
+          headerTintColor: "#fff",
         }}
       />
       <Tabs.Screen
-        name="settings"
+        name="about"
         options={{
-          title: "Explore",
-          tabBarIcon: () => {
-            return <Ionicons name="settings" size={24} color="black" />;
+          title: "About",
+          tabBarIcon: ({ focused }) => {
+            return (
+              <Ionicons
+                name="information-circle"
+                size={27}
+                color={focused ? "#fff" : "#bebebe"}
+              />
+            );
           },
+          tabBarActiveTintColor: "#fff",
         }}
       />
     </Tabs>

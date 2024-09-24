@@ -8,9 +8,10 @@ export const useMafiaStore = create((set: any) => ({
   characters,
   selectedCard: {},
   people: [],
+
   generatePeople: () =>
-    set((state: any) => ({
-      people: state.characters.flatMap((character: any) =>
+    set((state: any) => {
+      let people = state.characters.flatMap((character: any) =>
         Array.from({ length: character.count }, () => ({
           id: uuid.v4(),
           name: "",
@@ -19,9 +20,18 @@ export const useMafiaStore = create((set: any) => ({
           image: character.image,
           assigned: false,
           open: false,
+          description: character.description,
         }))
-      ),
-    })),
+      );
+      for (let i = people.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [people[i], people[j]] = [people[j], people[i]];
+      }
+      return {
+        ...state,
+        people,
+      };
+    }),
   randomCard: () =>
     set((state: any) => {
       const unselectedCards = state.people.filter(
@@ -71,6 +81,5 @@ export const useMafiaStore = create((set: any) => ({
       ),
       counter: state.counter - 1,
     })),
-
   resetGame: () => set({ counter: MIN_PLAYERS, characters }),
 }));

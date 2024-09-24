@@ -1,13 +1,21 @@
 import { Pressable, ScrollView, Text, View } from "react-native";
-import PlayerCard from "@/components/Players/PlayerCard";
+import PlayerCard from "@/components/Mafia/player-type-card";
 import { useMafiaStore } from "@/store/context";
 import { useNavigation } from "expo-router";
+import { useEffect } from "react";
 
 export default function Players() {
   const characters = useMafiaStore((state) => state.characters);
   const navigation = useNavigation<any>();
   const counter = useMafiaStore((state) => state.counter);
   const generatePeople = useMafiaStore((state) => state.generatePeople);
+
+  useEffect(() => {
+    navigation.getParent()?.setOptions({ gestureEnabled: false });
+    return () => {
+      navigation.getParent()?.setOptions({ gestureEnabled: true });
+    };
+  }, []);
 
   function startGame() {
     generatePeople();

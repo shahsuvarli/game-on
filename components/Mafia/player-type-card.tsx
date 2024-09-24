@@ -1,3 +1,4 @@
+import { Colors } from "@/constants/Colors";
 import { useMafiaStore } from "@/store/context";
 import { AntDesign } from "@expo/vector-icons";
 import { Pressable, Text, View } from "react-native";
@@ -9,7 +10,7 @@ export default function PlayerCard({ player }: any) {
   return (
     <View
       style={{
-        backgroundColor: "#bababa",
+        backgroundColor:  Colors.mafiaPrimary,
         borderRadius: 8,
         gap: 16,
         flexDirection: "row",
