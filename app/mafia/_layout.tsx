@@ -1,3 +1,4 @@
+import { Colors } from "@/constants/Colors";
 import { useMafiaStore } from "@/store/context";
 import { Ionicons } from "@expo/vector-icons";
 import { Stack, useNavigation } from "expo-router";
@@ -39,7 +40,9 @@ export default function MafiaLayout() {
           title: "",
           headerShown: true,
           headerBackground: () => {
-            return <View style={{ flex: 1, backgroundColor: "#3b8d359e" }} />;
+            return (
+              <View style={{ flex: 1, backgroundColor: Colors.mafiaPrimary }} />
+            );
           },
           headerLeft: () => {
             return (
@@ -68,9 +71,10 @@ export default function MafiaLayout() {
       <Stack.Screen
         name="player-card"
         options={{
-          title: "Player Card",
-          headerShown: false,
+          title: "Type & Submit",
+          headerShown: true,
           presentation: "containedModal",
+          // gestureEnabled: false,
         }}
       />
       <Stack.Screen
