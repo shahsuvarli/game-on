@@ -26,7 +26,6 @@ export default function TabLayout() {
                 name="game-controller"
                 size={24}
                 color={focused ? "#fff" : "#bebebe"}
-                t
               />
             );
           },
@@ -52,6 +51,10 @@ export default function TabLayout() {
             );
           },
           tabBarActiveTintColor: "#fff",
+          headerStyle: {
+            backgroundColor: Colors.lightPrimary,
+          },
+          headerTintColor: "#fff",
         }}
       />
     </Tabs>
