@@ -1,5 +1,4 @@
 import { useMafiaStore } from "@/store/context";
-import { AntDesign } from "@expo/vector-icons";
 import { useNavigation } from "expo-router";
 import { useState } from "react";
 import { View, Text, TextInput, Pressable } from "react-native";
@@ -56,7 +55,6 @@ const PlayerCardBottom = ({ card }: any) => {
           style={{
             padding: 8,
             borderRadius: 8,
-            // flex: 1,
             height: 50,
             backgroundColor: "#000",
             justifyContent: "center",

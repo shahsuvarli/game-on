@@ -8,6 +8,11 @@ export default function MafiaLayout() {
   const navigation = useNavigation<any>();
   const resetGame = useMafiaStore((state) => state.resetGame);
 
+  function hanldeHomePress() {
+    resetGame();
+    navigation.replace("(tabs)");
+  }
+
   return (
     <Stack
       screenOptions={{
@@ -22,10 +27,7 @@ export default function MafiaLayout() {
           headerLeft: () => {
             return (
               <Pressable
-                onPress={() => {
-                  resetGame();
-                  navigation.navigate("(tabs)");
-                }}
+                onPress={hanldeHomePress}
                 style={{ flexDirection: "row", alignItems: "center" }}
               >
                 <Ionicons name="home" size={25} color="#0000009d" />
@@ -47,10 +49,7 @@ export default function MafiaLayout() {
           headerLeft: () => {
             return (
               <Pressable
-                onPress={() => {
-                  resetGame();
-                  navigation.navigate("players");
-                }}
+                onPress={hanldeHomePress}
                 style={{
                   flexDirection: "row",
                   alignItems: "center",
@@ -74,7 +73,6 @@ export default function MafiaLayout() {
           title: "Type & Submit",
           headerShown: true,
           presentation: "containedModal",
-          // gestureEnabled: false,
         }}
       />
       <Stack.Screen
@@ -86,10 +84,7 @@ export default function MafiaLayout() {
           headerLeft: () => {
             return (
               <Pressable
-                onPress={() => {
-                  resetGame();
-                  navigation.navigate("players");
-                }}
+                onPress={hanldeHomePress}
                 style={{ flexDirection: "row", alignItems: "center" }}
               >
                 <Ionicons name="home" size={25} color="#0000009d" />

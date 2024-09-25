@@ -7,8 +7,8 @@ import { View, Text, Pressable, ScrollView } from "react-native";
 export default function FinalPage() {
   const people: any = useMafiaStore((state) => state.people);
   const openCard = useMafiaStore((state) => state.openCard);
-
   const navigation = useNavigation<any>();
+
   useEffect(() => {
     navigation.getParent()?.setOptions({ gestureEnabled: false });
     return () => {
@@ -27,8 +27,22 @@ export default function FinalPage() {
       }}
     >
       <StatusBar style="dark" />
-      <Text style={{ fontSize: 20, color: "#0000007c" }}>List of players!</Text>
-      <ScrollView contentContainerStyle={{ flexWrap: "wrap", flexDirection: "row", gap: 4, width:'100%' }}>
+      <View style={{ flexDirection: "column", gap: 10 }}>
+        <Text style={{ fontSize: 20, color: "#0000007c" }}>
+          List of players!
+        </Text>
+        <Text style={{ fontSize: 15, color: "#00000046" }}>
+          Touch on the player to see their role
+        </Text>
+      </View>
+      <ScrollView
+        contentContainerStyle={{
+          flexWrap: "wrap",
+          flexDirection: "row",
+          gap: 4,
+          width: "100%",
+        }}
+      >
         {people.map((person: any): any => {
           return (
             <Pressable
@@ -36,7 +50,7 @@ export default function FinalPage() {
               style={{
                 padding: 16,
                 borderRadius: 8,
-                backgroundColor: "#000",
+                backgroundColor: person.open ? "#00000098" : "#000",
                 width: "100%",
                 flexDirection: "row",
                 justifyContent: "space-between",
