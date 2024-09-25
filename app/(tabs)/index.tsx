@@ -15,7 +15,7 @@ export default function HomeScreen() {
   return (
     <SafeAreaView style={{ backgroundColor: "#fff" }}>
       <ScrollView style={styles.titleContainer}>
-        <Pressable style={styles.card} onPress={() => router.navigate("mafia")}>
+        <Pressable style={styles.card} onPress={() => router.replace("mafia")}>
           <Text style={styles.cardText}>Mafia</Text>
           <FontAwesome6 name="gun" size={23} color={Colors.lightPrimary} />
         </Pressable>
