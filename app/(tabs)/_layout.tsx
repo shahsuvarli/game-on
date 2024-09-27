@@ -19,7 +19,7 @@ export default function TabLayout() {
       <Tabs.Screen
         name="index"
         options={{
-          title: "Mafi",
+          title: "Mafia",
           tabBarIcon: ({ focused }) => {
             return (
               <Ionicons
