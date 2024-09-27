@@ -1,49 +1,91 @@
+import { characters } from "@/assets/data/characters";
 import { Colors } from "@/constants/Colors";
-import { FontAwesome6, Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "expo-router";
-import {
-  Pressable,
-  SafeAreaView,
-  ScrollView,
-  StyleSheet,
-  Text,
-} from "react-native";
+import { Image, Pressable, SafeAreaView, Text, View } from "react-native";
 
 export default function HomeScreen() {
   const router = useNavigation<any>();
 
   return (
-    <SafeAreaView style={{ backgroundColor: "#fff" }}>
-      <ScrollView style={styles.titleContainer}>
-        <Pressable style={styles.card} onPress={() => router.replace("mafia")}>
-          <Text style={styles.cardText}>Mafia</Text>
-          <FontAwesome6 name="gun" size={23} color={Colors.lightPrimary} />
+    <SafeAreaView style={{ backgroundColor: Colors.primary, flex: 1 }}>
+      <View
+        style={{
+          flex: 1,
+          justifyContent: "space-evenly",
+          alignItems: "center",
+          backgroundColor: Colors.mafiaLight,
+          borderRadius: 20,
+          margin: 20,
+        }}
+      >
+        <Image
+          source={require("../../assets/images/icon.png")}
+          style={{
+            width: 200,
+            height: 200,
+            borderWidth: 1,
+            borderRadius: 100,
+            borderColor: Colors.mafiaPrimary,
+          }}
+        />
+        <Text
+          style={{ fontSize: 24, color: Colors.primary, textAlign: "center" }}
+        >
+          Welcome to the Game!
+        </Text>
+        <Pressable
+          onPress={() => router.navigate("mafia")}
+          style={{
+            padding: 10,
+            borderRadius: 20,
+            backgroundColor: Colors.primary,
+            width: 200,
+            height: 70,
+            justifyContent: "center",
+            alignItems: "center",
+            borderStyle: "solid",
+            borderColor: Colors.primary,
+            borderWidth: 1,
+          }}
+        >
+          <Text style={{ fontSize: 20, color: "#fff" }}>Tap to start!</Text>
         </Pressable>
-      </ScrollView>
+        <View
+          style={{
+            flexDirection: "row",
+            justifyContent: "center",
+            alignItems: "center",
+            width: "100%",
+            height: 100,
+          }}
+        >
+          <View
+            style={{
+              flexDirection: "row",
+              width: "90%",
+              position: "relative",
+            }}
+          >
+            {characters.map((character) => (
+              <Image
+                key={character.id}
+                source={character.image}
+                style={{
+                  width: 70,
+                  height: 70,
+                  borderRadius: 100,
+                  opacity: 0.9,
+                  position: "static",
+                  bottom: 0,
+                  right: character.id * 17,
+                  borderWidth: 1,
+                  borderColor: "#fff",
+                }}
+              />
+            ))}
+          </View>
+        </View>
+      </View>
     </SafeAreaView>
   );
 }
-
-const styles = StyleSheet.create({
-  titleContainer: {
-    flexDirection: "column",
-    height: "100%",
-    padding: 16,
-    gap: 16,
-  },
-  card: {
-    backgroundColor: Colors.mafiaLight,
-    padding: 16,
-    borderRadius: 8,
-    flexDirection: "row",
-    justifyContent: "space-between",
-    borderStyle: "solid",
-    borderColor: Colors.lightPrimary,
-    borderWidth: 1,
-  },
-  cardText: {
-    fontSize: 24,
-    opacity: 0.8,
-    color: Colors.primary,
-  },
-});

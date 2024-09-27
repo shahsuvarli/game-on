@@ -19,7 +19,7 @@ export default function TabLayout() {
       <Tabs.Screen
         name="index"
         options={{
-          title: "Games",
+          title: "Mafi",
           tabBarIcon: ({ focused }) => {
             return (
               <Ionicons
@@ -29,7 +29,7 @@ export default function TabLayout() {
               />
             );
           },
-          headerShown: true,
+          headerShown: false,
           tabBarActiveTintColor: "#fff",
           headerStyle: {
             backgroundColor: Colors.lightPrimary,
