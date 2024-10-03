@@ -1,4 +1,3 @@
-import { characters } from "@/assets/data/characters";
 import { Colors } from "@/constants/Colors";
 import { useNavigation } from "expo-router";
 import { Image, Pressable, SafeAreaView, Text, View } from "react-native";
@@ -16,6 +15,7 @@ export default function HomeScreen() {
           backgroundColor: Colors.mafiaLight,
           borderRadius: 20,
           margin: 20,
+          paddingHorizontal: 20,
         }}
       >
         <Image
@@ -29,9 +29,16 @@ export default function HomeScreen() {
           }}
         />
         <Text
-          style={{ fontSize: 24, color: Colors.primary, textAlign: "center" }}
+          style={{ fontSize: 27, color: Colors.primary, fontWeight: "bold" }}
         >
-          Welcome to the Game!
+          Mafia
+        </Text>
+        <Text style={{ fontSize: 20, color: "#0000006f", textAlign: "center" }}>
+          Trust no one, suspect everyone!
+        </Text>
+        <Text style={{ fontSize: 15, color: "#0000006f", textAlign: "center" }}>
+          The Mafia Game is a social deduction party game that challenges
+          players to use strategy, deception, and persuasion to win.
         </Text>
         <Pressable
           onPress={() => router.navigate("mafia")}
@@ -39,52 +46,31 @@ export default function HomeScreen() {
             padding: 10,
             borderRadius: 20,
             backgroundColor: Colors.primary,
-            width: 200,
+            // width: 150,
             height: 70,
-            justifyContent: "center",
+            justifyContent: "space-evenly",
             alignItems: "center",
             borderStyle: "solid",
             borderColor: Colors.primary,
             borderWidth: 1,
-          }}
-        >
-          <Text style={{ fontSize: 20, color: "#fff" }}>Tap to start!</Text>
-        </Pressable>
-        <View
-          style={{
+            paddingHorizontal: 20,
             flexDirection: "row",
-            justifyContent: "center",
-            alignItems: "center",
-            width: "100%",
-            height: 100,
+            gap: 10,
           }}
         >
-          <View
+          <Text style={{ fontSize: 20, color: "#fff" }}>Start Game</Text>
+          <Image
+            source={require("../../assets/images/play-button.png")}
             style={{
-              flexDirection: "row",
-              width: "90%",
-              position: "relative",
+              width: 40,
+              height: 40,
+              tintColor: "#fff",
             }}
-          >
-            {characters.map((character) => (
-              <Image
-                key={character.id}
-                source={character.image}
-                style={{
-                  width: 70,
-                  height: 70,
-                  borderRadius: 100,
-                  opacity: 0.9,
-                  position: "static",
-                  bottom: 0,
-                  right: character.id * 17,
-                  borderWidth: 1,
-                  borderColor: "#fff",
-                }}
-              />
-            ))}
-          </View>
-        </View>
+          />
+        </Pressable>
+        <Text style={{ fontSize: 17, color: "#0000006f", textAlign: "center" }}>
+          2024 © Mafia
+        </Text>
       </View>
     </SafeAreaView>
   );

@@ -7,17 +7,13 @@ const PlayerCardTop = ({ card }: any) => {
       style={{
         width: "100%",
         padding: 16,
-        // backgroundColor: Colors.primary,
-        opacity: 0.9,
       }}
     >
       <Image
         source={card.image}
         style={{
-          width: "100%",
+          width: 300,
           height: 300,
-          borderTopLeftRadius: 8,
-          borderTopRightRadius: 8,
           alignSelf: "center",
         }}
       />
@@ -25,7 +21,7 @@ const PlayerCardTop = ({ card }: any) => {
         style={{
           backgroundColor: Colors.mafiaLight,
           borderBottomLeftRadius: 4,
-          // height: 50,
+          marginTop: 10,
           borderBottomRightRadius: 4,
           paddingVertical: 20,
           paddingHorizontal: 16,
