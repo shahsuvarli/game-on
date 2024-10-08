@@ -6,19 +6,45 @@
   "build": {
     "development": {
       "developmentClient": true,
-      "distribution": "internal"
+      "distribution": "internal",
+      "android": {
+        "buildType": "apk"
+      },
+      "ios": {
+        "simulator": true
+      }
     },
     "preview": {
-      "distribution": "internal"
+      "distribution": "internal",
+      "android": {
+        "buildType": "apk"
+      },
+      "ios": {
+        "simulator": true
+      }
     },
     "production": {
       "autoIncrement": true,
+      "android": {
+        "buildType": "app-bundle"
+      },
       "ios": {
-        "image": "latest"
+        "image": "latest",
+        "enterpriseProvisioning": "universal"
       }
     }
   },
   "submit": {
-    "production": {}
+    "production": {
+      "ios": {
+        "appleId": "shahsuvarli.elvin@icloud.com",
+        "ascAppId": "Mafia",
+        "applePassword": "qknj-rzxg-dppq-eail",
+        "appleTeamId": "N7BPFD4842"
+      },
+      "android": {
+        "serviceAccountKeyPath": "./path-to-service-account.json"
+      }
+    }
   }
 }

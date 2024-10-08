@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "game-on",
+    "name": "Mafia - Game On!",
     "slug": "game-on",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -35,7 +35,12 @@
     "extra": {
       "eas": {
         "projectId": "c3fab187-12a8-4067-a28f-073b80d98f1c"
-      }
+      },
+      "router": {
+        "origin": false
+      },
+      "sdkVersion": "51.0.0",
+      "platforms": ["ios", "android", "web"]
     },
     "owner": "shahsuvarli"
   }
