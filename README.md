@@ -1,7 +1,5 @@
 # Mafia Game - iOS Edition
 
-![Mafia Game Logo](path_to_logo_image) <!-- Add a path to your game's logo here -->
-
 ### Welcome to the **Mafia Game** – a digital adaptation of the popular card-based party game, now available for iOS! Gather your friends and experience the suspense, mystery, and strategy of Mafia in a whole new way.
 
 ## 📖 About the Game
