@@ -2,13 +2,35 @@ import { Colors } from "@/constants/Colors";
 import { useMafiaStore } from "@/store/context";
 import { Ionicons } from "@expo/vector-icons";
 import { Stack, useNavigation } from "expo-router";
-import { Pressable, View } from "react-native";
+import { Pressable, StyleSheet, View } from "react-native";
+
+function HomeButton({
+  onPress,
+  variant = "plain",
+}: {
+  onPress: () => void;
+  variant?: "plain" | "pill";
+}) {
+  return (
+    <Pressable
+      onPress={onPress}
+      hitSlop={10}
+      style={({ pressed }) => [
+        styles.homeBase,
+        variant === "pill" && styles.homePill,
+        pressed && styles.pressed,
+      ]}
+    >
+      <Ionicons name="home" size={20} color={Colors.cyan} />
+    </Pressable>
+  );
+}
 
 export default function MafiaLayout() {
   const navigation = useNavigation<any>();
   const resetGame = useMafiaStore((state) => state.resetGame);
 
-  function hanldeHomePress() {
+  function handleHomePress() {
     resetGame();
     navigation.replace("(tabs)");
   }
@@ -17,82 +39,67 @@ export default function MafiaLayout() {
     <Stack
       screenOptions={{
         headerShown: true,
+        headerTitleAlign: "center",
+        headerShadowVisible: false,
+        headerStyle: { backgroundColor: Colors.bg },
+        headerTitleStyle: {
+          color: Colors.text,
+          fontSize: 16,
+          fontWeight: "800",
+        },
+        contentStyle: { backgroundColor: Colors.bg },
       }}
     >
       <Stack.Screen
         name="players"
         options={{
-          headerShown: true,
           headerTitle: "Choose characters",
-          headerLeft: () => {
-            return (
-              <Pressable
-                onPress={hanldeHomePress}
-                style={{ flexDirection: "row", alignItems: "center" }}
-              >
-                <Ionicons name="home" size={25} color="#0000009d" />
-              </Pressable>
-            );
-          },
+          headerLeft: () => <HomeButton onPress={handleHomePress} />,
         }}
       />
       <Stack.Screen
         name="game-start"
         options={{
-          title: "",
-          headerShown: true,
-          headerBackground: () => {
-            return (
-              <View style={{ flex: 1, backgroundColor: Colors.mafiaPrimary }} />
-            );
-          },
-          headerLeft: () => {
-            return (
-              <Pressable
-                onPress={hanldeHomePress}
-                style={{
-                  flexDirection: "row",
-                  alignItems: "center",
-                  backgroundColor: "#fff",
-                  borderStyle: "solid",
-                  borderColor: "#fff",
-                  borderWidth: 1,
-                  borderRadius: 100,
-                  padding: 8,
-                }}
-              >
-                <Ionicons name="home" size={25} color="#0000009d" />
-              </Pressable>
-            );
-          },
+          headerTitle: "Tap to open",
+          // headerStyle: { backgroundColor: Colors.card },
+          headerLeft: () => <HomeButton onPress={handleHomePress} />,
         }}
       />
       <Stack.Screen
         name="player-card"
         options={{
-          title: "Type & Submit",
-          headerShown: true,
+          headerTitle: "Type & Submit",
           presentation: "containedModal",
+          headerLeft: () => <HomeButton onPress={handleHomePress} />,
         }}
       />
       <Stack.Screen
         name="final-page"
         options={{
-          title: "Final page",
-          headerShown: true,
           headerTitle: "Players",
-          headerLeft: () => {
-            return (
-              <Pressable
-                onPress={hanldeHomePress}
-                style={{ flexDirection: "row", alignItems: "center" }}
-              >
-                <Ionicons name="home" size={25} color="#0000009d" />
-              </Pressable>
-            );
-          },
+          headerLeft: () => <HomeButton onPress={handleHomePress} />,
         }}
       />
     </Stack>
   );
 }
+
+const styles = StyleSheet.create({
+  homeBase: {
+    marginLeft: 10,
+    width: 38,
+    height: 38,
+    borderRadius: 19,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  homePill: {
+    backgroundColor: Colors.cyanDim,
+    borderWidth: 1,
+    borderColor: Colors.cyan,
+  },
+  pressed: {
+    transform: [{ scale: 0.96 }],
+    opacity: 0.9,
+  },
+});
