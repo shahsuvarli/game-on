@@ -6,55 +6,44 @@ export default function TabLayout() {
   return (
     <Tabs
       screenOptions={{
-        headerShown: true,
-        tabBarLabelPosition: "beside-icon",
+        headerShown: false,
         tabBarStyle: {
-          backgroundColor: Colors.lightPrimary,
+          backgroundColor: Colors.card,
+          borderTopWidth: 1,
+          borderTopColor: "rgba(78,168,222,0.15)",
+          height: 60,
+          paddingBottom: 8,
         },
-        tabBarLabel: () => {
-          return null;
+        tabBarActiveTintColor: Colors.cyan,
+        tabBarInactiveTintColor: Colors.steel,
+        tabBarLabelStyle: {
+          fontSize: 11,
+          letterSpacing: 0.5,
+          fontWeight: "600",
         },
       }}
     >
       <Tabs.Screen
         name="index"
         options={{
-          title: "Mafia",
-          tabBarIcon: ({ focused }) => {
-            return (
-              <Ionicons
-                name="game-controller"
-                size={24}
-                color={focused ? "#fff" : "#bebebe"}
-              />
-            );
-          },
-          headerShown: false,
-          tabBarActiveTintColor: "#fff",
-          headerStyle: {
-            backgroundColor: Colors.lightPrimary,
-          },
-          headerTintColor: "#fff",
+          title: "Home",
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="game-controller" size={size} color={color} />
+          ),
         }}
       />
       <Tabs.Screen
         name="about"
         options={{
           title: "About",
-          tabBarIcon: ({ focused }) => {
-            return (
-              <Ionicons
-                name="information-circle"
-                size={27}
-                color={focused ? "#fff" : "#bebebe"}
-              />
-            );
-          },
-          tabBarActiveTintColor: "#fff",
-          headerStyle: {
-            backgroundColor: Colors.lightPrimary,
-          },
-          headerTintColor: "#fff",
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="information-circle" size={size} color={color} />
+          ),
+          headerShown: false,
+          headerTitle: "About",
+          headerStyle: { backgroundColor: Colors.card },
+          headerTintColor: Colors.text,
+          headerShadowVisible: false,
         }}
       />
     </Tabs>
